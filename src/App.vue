@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
+    <v-app-bar app color="sucess" dark>
       <div class="d-flex align-center">LiveCoding</div>
 
       <v-spacer></v-spacer>
@@ -10,7 +10,6 @@
         <router-link to="/login"><v-icon>mdi-login</v-icon> </router-link>
       </v-btn>
     </v-app-bar>
-
     <router-view></router-view>
   </v-app>
 </template>
