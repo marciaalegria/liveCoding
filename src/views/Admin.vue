@@ -1,14 +1,51 @@
-
 <template>
-  <div class="about">
-    <h1>aplicación web responsiva para que puedan acceder a los audios con los
-ejemplos. Por el momento existen seis cursos, cada curso tiene nombre, descripción,
-imágen y n ejemplos. También se indica que cada ejemplo tiene un título, una descripción y
-un link al mp3.
+<v-container>
 
-Cada curso tendrá su propia página (vista show) con otro layout de cards, solo que esta
-vez con los ejemplos.
-Además se solicita una vista admin (ruta autenticada) con un mantenedor de cursos (como
-MVP no será necesario en esta etapa un CRUD de ejemplos).This is an about page</h1>
-  </div>
+<v-main></v-main>
+<v-row>
+  <v-col>
+
+  <h1> curso {{course.data.name}}</h1>
+  <h2>{{course.data.description}}</h2>
+  </v-col>
+</v-row>
+
+</v-container>
 </template>
+
+<script>
+import axios from 'axios'
+import {mapState} from 'vuex'
+export default {
+  name: 'Admin',
+  props: ['id'],
+  data: function(){
+    return{
+      course:{}
+    }
+  },
+  computed: {
+    ...mapState(['courses'])
+  },
+  methods: {
+       getCourse(id){
+      axios.get("https://us-central1-ottoklauss-5927c.cloudfunctions.net/api/courses/"+ id)
+      .then(resp => {
+        console.log(resp)
+        this.course= resp.data;
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    }
+  },
+  created(){
+    this.getCourse(this.id)
+  }
+  // components: {},
+}
+</script>
+
+<style scoped>
+  
+</style>
