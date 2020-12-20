@@ -24,16 +24,7 @@ export default new Vuex.Store({
         console.log(error)
       })
     },
-    getCourse({commit}, id){
-      axios.get("https://us-central1-ottoklauss-5927c.cloudfunctions.net/api/courses/"+ id)
-      .then(resp => {
-        console.log(resp.data)
-        commit()
-      })
-      .catch(error => {
-        console.log(error)
-      })
-    }
+
   },
   modules: {
   }
